@@ -15,6 +15,8 @@ KDIS_GitHub_Package/
 ├── protocol/
 │   ├── KDIS_Experimental_Protocol_Clean.md
 │   └── KDIS_experimental_protocol.pdf
+├── figures/
+│   └── extracted paper figures
 ├── queries/
 │   ├── KDIS_Neo4j_Cypher_Cleaned.cypher  # Graph construction & raw metrics
 │   └── README_Neo4j.md
@@ -55,6 +57,15 @@ Implements graph construction and raw centrality export:
 - Optional Graph Data Science (GDS) procedures where available
 - Cypher-only fallbacks for Neo4j Aura Free deployments
 
+### 3. Figures and Visual Assets (`figures/`)
+
+Contains extracted publication figures and structural visualizations used in the paper, including:
+
+- Degree distribution plots
+- Structural convergence subgraphs
+- Topological boundary-condition visualizations
+- Framework architecture diagrams
+
 **Note on architecture**: Threshold *computation* and threshold *application*
 are deliberately separated. Cypher produces raw out-degree values; the
 Python notebook applies the S_out_p95 criterion to those values and merges
@@ -76,8 +87,8 @@ without modifying the analytical logic.
 ### Installation
 
 ```bash
-git clone https://github.com/<your-username>/KDIS-HGBF.git
-cd KDIS-HGBF
+git clone https://github.com/ِAbdalhadiB/KDIS-HGBF-ZeroDay-IDS.git
+cd KDIS-HGBF-ZeroDay-IDS
 pip install -r requirements.txt
 ```
 
@@ -179,15 +190,6 @@ And, where appropriate, the prior author work referenced by this framework:
 
 ---
 
-## Archived Version
-
-A persistent citable archive of this repository is available at:
-
-[![DOI](https://zenodo.org/badge/DOI/XXXXXXX.svg)](https://doi.org/XXXXXXX)
-
-*(Replace with actual Zenodo DOI after archiving.)*
-
----
 
 ## License
 
