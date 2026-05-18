@@ -1,0 +1,31 @@
+{
+  "package_name": "KDIS_GitHub_Package",
+  "version": "1.2.0",
+  "release_date": "2026-05",
+  "license": "MIT",
+  "python_version": "3.12.13",
+  "runtime_environment": "Google Colab (May 2026 snapshot)",
+  "notebook_cells": 14,
+  "coverage": [
+    "CIC-IDS2017 flow-level behavioral validation",
+    "WTMC2021 entity-level convergence and sensitivity analysis",
+    "RF / IF / KDIS cross-method baseline stability",
+    "UNSW-NB15 topological boundary test",
+    "Neo4j graph-structural query layer"
+  ],
+  "architecture_note": "The Python notebook handles analytical logic (thresholding, convergence, RCI). The Cypher layer handles graph construction and raw centrality export. Threshold application is performed in the notebook on the values exported from Neo4j, allowing the framework to remain portable across graph databases.",
+  "dependency_versions": {
+    "pandas": "2.2.2",
+    "numpy": "2.0.2",
+    "scikit-learn": "1.6.1",
+    "networkx": "3.6.1",
+    "matplotlib": "3.10.0",
+    "pyarrow": "18.1.0"
+  },
+  "limitations": [
+    "Dataset files are not included.",
+    "Notebook still contains Google Drive mounting and local path assumptions.",
+    "Neo4j GDS queries are optional and environment-dependent.",
+    "Dependency versions match the May 2026 Colab snapshot used for the paper; other recent versions may also work but have not been validated."
+  ]
+}
