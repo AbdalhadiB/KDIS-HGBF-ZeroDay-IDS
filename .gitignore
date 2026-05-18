@@ -1,0 +1,71 @@
+# ============================================================================
+# .gitignore for KDIS / HGBF Reproducibility Package
+# ============================================================================
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+build/
+dist/
+
+# ----- Jupyter / Colab -----
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*-checkpoint.ipynb
+
+# ----- Virtual environments -----
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# ----- IDE / Editor files -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ----- OS files -----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================================
+# Datasets — MUST NOT BE COMMITTED
+# Per the data availability statement, datasets are obtained from their
+# original public providers, not redistributed via this repository.
+# ============================================================================
+*.parquet
+*.pcap
+*.pcapng
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Dataset-specific directories
+CIC_IDS2017/
+CICIDS2017/
+cic-ids2017/
+WTMC2021/
+wtmc2021/
+UNSW_NB15/
+UNSW-NB15/
+unsw_nb15/
+
+# ----- Local intermediate outputs -----
+results/
+outputs/
+*.log
+graph_metrics.csv
+behavioral_alerts.csv
+
+# ----- Neo4j local data -----
+neo4j_data/
+*.db

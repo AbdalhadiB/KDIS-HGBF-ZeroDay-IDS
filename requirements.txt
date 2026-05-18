@@ -1,0 +1,20 @@
+# ============================================================================
+# KDIS / HGBF Reproducibility Package — Python Dependencies
+# ============================================================================
+# Versions captured from the Google Colab environment used to produce the
+# results reported in the paper (May 2026 runtime snapshot).
+# Python runtime: 3.12.13
+# ============================================================================
+
+pandas==2.2.2
+numpy==2.0.2
+scikit-learn==1.6.1
+networkx==3.6.1
+matplotlib==3.10.0
+pyarrow==18.1.0
+
+# ----------------------------------------------------------------------------
+# Optional dependencies (uncomment if applicable)
+# ----------------------------------------------------------------------------
+# neo4j==5.23.0          # only if querying Neo4j programmatically from Python
+#                         # instead of the Neo4j Browser UI
