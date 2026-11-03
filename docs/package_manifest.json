@@ -1,31 +1,136 @@
 {
   "package_name": "KDIS_GitHub_Package",
-  "version": "1.2.0",
-  "release_date": "2026-05",
+  "version": "1.3.0",
+  "release_date": "2026-11",
   "license": "MIT",
-  "python_version": "3.12.13",
-  "runtime_environment": "Google Colab (May 2026 snapshot)",
-  "notebook_cells": 14,
+
+  "original_protocol": {
+    "python_version": "3.12.13",
+    "runtime_environment": "Google Colab (May 2026 snapshot)",
+    "notebook": "notebooks/KDIS_Protocol_Clean.ipynb",
+    "notebook_cells": 14,
+    "status": "locked",
+    "dependency_versions": {
+      "pandas": "2.2.2",
+      "numpy": "2.0.2",
+      "scikit-learn": "1.6.1",
+      "networkx": "3.6.1",
+      "matplotlib": "3.10.0",
+      "pyarrow": "18.1.0"
+    }
+  },
+
   "coverage": [
     "CIC-IDS2017 flow-level behavioral validation",
     "WTMC2021 entity-level convergence and sensitivity analysis",
     "RF / IF / KDIS cross-method baseline stability",
     "UNSW-NB15 topological boundary test",
-    "Neo4j graph-structural query layer"
+    "Neo4j graph-structural query layer",
+    "WTMC2021 frozen-policy source-window validation",
+    "Improved CSE-CIC-IDS2018 frozen-policy cross-network validation",
+    "Post-review structural ablation of SBV and SREP constituent threshold conditions"
   ],
-  "architecture_note": "The Python notebook handles analytical logic (thresholding, convergence, RCI). The Cypher layer handles graph construction and raw centrality export. Threshold application is performed in the notebook on the values exported from Neo4j, allowing the framework to remain portable across graph databases.",
-  "dependency_versions": {
-    "pandas": "2.2.2",
-    "numpy": "2.0.2",
-    "scikit-learn": "1.6.1",
-    "networkx": "3.6.1",
-    "matplotlib": "3.10.0",
-    "pyarrow": "18.1.0"
+
+  "architecture_note": "The original Python notebook handles analytical logic including thresholding, convergence, and RCI, while the Cypher layer handles graph construction and raw centrality export. Threshold application is performed in Python on values exported from Neo4j, preserving graph-database portability. The later windowed-flow experiments use source-hour structural and behavioral operators under a frozen-policy design in which operator definitions, feature identities, window duration, percentile policies, and fusion rules are fixed before external evaluation, while numeric threshold values are estimated from the declared calibration population of each environment.",
+
+  "post_review_ablation": {
+    "status": "post-hoc diagnostic analysis",
+    "purpose": "Evaluate whether the conjunctive structure of the frozen structural operators provides measurable value beyond their individual threshold components without redesigning or retuning the original frozen-policy operators.",
+
+    "notebooks": [
+      "notebooks/ablation/WTMC2021_Frozen_Validation_Ablation.ipynb",
+      "notebooks/ablation/CSECICIDS2018_Frozen_Validation_Ablation.ipynb"
+    ],
+
+    "results": [
+      "results/ablation/wtmc_structural_ablation_baselines.csv",
+      "results/ablation/wtmc_structural_ablation_diagnostics.csv",
+      "results/ablation/csecic2018_structural_ablation_baselines.csv",
+      "results/ablation/csecic2018_structural_ablation_diagnostics.csv"
+    ],
+
+    "baselines": {
+      "COUNT_ONLY_P99": "flow count >= calibration P99",
+      "RATE_ONLY_P99": "active-span flow rate >= calibration P99",
+      "REP_ONLY_P99": "destination-repetition ratio >= calibration P99"
+    },
+
+    "comparators": {
+      "S_BV": "RATE_ONLY_P99 AND COUNT_ONLY_P99",
+      "S_REP": "REP_ONLY_P99 AND flow-count P50 guard",
+      "S_T": "S_BV OR S_REP"
+    },
+
+    "methodological_note": "The ablation was performed after completion of the original frozen-policy external evaluation. It was not used to redesign, retune, or redefine S_BV, S_REP, S_T, the one-hour windowing policy, percentile policies, behavioral mechanisms, or fusion rules.",
+
+    "main_findings": [
+      "The SBV conjunction substantially improved selectivity relative to its individual rate-only and count-only components.",
+      "In Improved CSE-CIC-IDS2018, SBV reduced false positives from 8389 under RATE_ONLY_P99 to 148 while retaining the same 50 true positives.",
+      "The SREP P50 flow-count guard provided no additional selectivity in Improved CSE-CIC-IDS2018 because REP_ONLY_P99 and S_REP produced identical results.",
+      "In WTMC2021, the SREP P50 flow-count guard removed two true-positive windows without removing any false positives.",
+      "The original SREP definition remains unchanged to preserve the integrity of the frozen-policy experiment."
+    ]
   },
+
+  "ablation_runtime_environments": {
+    "WTMC2021": {
+      "snapshot_file": "reproducibility/environments/WTMC2021_ablation_runtime_environment.txt",
+      "capture_date": "2026-11-02",
+      "environment": "Google Colab",
+      "python": "3.13.18",
+      "operating_system": "Ubuntu 24.04.5 LTS",
+      "kernel": "Linux 6.6.159+",
+      "cpu": "AMD EPYC 7B12",
+      "logical_cpus": 2,
+      "ram_gb": 12.67,
+      "gpu": "None detected",
+      "dependency_versions": {
+        "numpy": "2.4.6",
+        "pandas": "2.2.3",
+        "scipy": "1.16.3",
+        "scikit-learn": "1.6.1",
+        "duckdb": "1.3.2",
+        "networkx": "3.7",
+        "matplotlib": "3.10.0",
+        "pyarrow": "23.0.1",
+        "psutil": "5.9.5"
+      }
+    },
+
+    "CSECICIDS2018": {
+      "snapshot_file": "reproducibility/environments/CSECICIDS2018_ablation_runtime_environment.txt",
+      "capture_date": "2026-11-02",
+      "environment": "Google Colab",
+      "python": "3.13.18",
+      "operating_system": "Ubuntu 24.04.5 LTS",
+      "kernel": "Linux 6.6.159+",
+      "cpu": "AMD EPYC 7B12",
+      "logical_cpus": 2,
+      "ram_gb": 12.67,
+      "gpu": "None detected",
+      "dependency_versions": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "scipy": "1.16.3",
+        "scikit-learn": "1.6.1",
+        "duckdb": "1.3.2",
+        "networkx": "3.7",
+        "matplotlib": "3.10.0",
+        "pyarrow": "23.0.1",
+        "psutil": "5.9.5"
+      }
+    }
+  },
+
+  "reproducibility_note": "The November 2026 runtime snapshots document the environments used for the post-review reproducibility reruns and structural ablation analyses. They do not retrospectively redefine the May 2026 software environment of the original locked KDIS/HGBF protocol.",
+
   "limitations": [
-    "Dataset files are not included.",
-    "Notebook still contains Google Drive mounting and local path assumptions.",
+    "Dataset files are not included in the repository.",
+    "The original locked notebook contains Google Drive mounting and local path assumptions.",
     "Neo4j GDS queries are optional and environment-dependent.",
-    "Dependency versions match the May 2026 Colab snapshot used for the paper; other recent versions may also work but have not been validated."
+    "Dependency versions under original_protocol correspond to the May 2026 Colab snapshot used for the original protocol.",
+    "The post-review ablation reruns were executed under later November 2026 Colab environments whose complete package states are preserved in reproducibility/environments/.",
+    "The two November 2026 Colab runtimes were not identical; notably, WTMC2021 used NumPy 2.4.6 whereas the Improved CSE-CIC-IDS2018 rerun used NumPy 2.1.3.",
+    "The structural ablation is diagnostic and post-hoc and must not be interpreted as retrospective optimization of the frozen-policy detector."
   ]
 }
