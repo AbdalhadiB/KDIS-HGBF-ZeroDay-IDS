@@ -1,4 +1,0 @@
-Environment,Comparison,Baseline,Operator,Delta_Flagged,Delta_TP,Delta_FP,Delta_Precision,Delta_Recall,Delta_F1
-Improved CSE-CIC-IDS2018,SBV vs rate-only,RATE_ONLY_P99,S_BV,-8241,0,-8241,0.24660037991001377,0.0,0.2850781759701341
-Improved CSE-CIC-IDS2018,SBV vs count-only,COUNT_ONLY_P99,S_BV,-5499,-31,-5468,0.23830724304657955,-0.223021582733813,0.26897716618227596
-Improved CSE-CIC-IDS2018,SREP vs repetition-only,REP_ONLY_P99,S_REP,0,0,0,0.0,0.0,0.0

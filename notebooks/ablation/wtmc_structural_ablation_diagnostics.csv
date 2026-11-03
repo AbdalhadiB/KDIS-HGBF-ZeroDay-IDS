@@ -1,4 +1,0 @@
-Environment,Comparison,Baseline,Operator,Delta_Flagged,Delta_TP,Delta_FP,Delta_Precision,Delta_Recall,Delta_F1
-WTMC2021,SBV vs rate-only,RATE_ONLY_P99,S_BV,-1,0,-1,0.11904761904761907,0.0,0.01976284584980237
-WTMC2021,SBV vs count-only,COUNT_ONLY_P99,S_BV,-3,0,-3,0.2777777777777778,0.0,0.054545454545454564
-WTMC2021,SREP vs repetition-only,REP_ONLY_P99,S_REP,-2,-2,0,0.0,-0.125,-0.10256410256410264
