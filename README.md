@@ -347,14 +347,12 @@ The datasets remain subject to the respective providers' licenses and usage cond
 If you use the original KDIS/HGBF code, protocol, or results, please cite the corresponding study when publication details become available.
 
 ```bibtex
-@article{albluwi2026kdis,
-  title   = {Cross-Representational Corroborative Reasoning for Explainable
-             Zero-Day Intrusion Detection: A Knowledge-Driven Hybrid
-             Graph--Behavioral Framework},
-  author  = {Albluwi, Abdulhadi and [co-authors]},
-  journal = {[Target Journal]},
-  year    = {2026},
-  doi     = {[DOI placeholder]}
+@misc{albluwi2026kdisrepo,
+  author       = {Albluwi, Abdulhadi},
+  title        = {KDIS / HGBF Reproducibility Package},
+  year         = {2026},
+  howpublished = {GitHub repository},
+  note         = {Reproducibility assets for knowledge-driven and hybrid graph--behavioral intrusion detection research}
 }
 ```
 
